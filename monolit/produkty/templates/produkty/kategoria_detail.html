@@ -1,29 +1,29 @@
 {% extends "produkty/base.html" %}
 
-{% block title %}{{ kategoria.nazwa }} - BitBazar{% endblock %}
+{% block title %}{{ kategoria.nazwa }}{% endblock %}
 
 {% block content %}
-    <h2 class="page-title">Kategoria: {{ kategoria.nazwa }}</h2>
+    <h1 class="page-title">{{ kategoria.nazwa }}</h1>
     <p>{{ kategoria.opis }}</p>
 
     <section class="produkty">
         {% for produkt in produkty %}
             <article class="produkt-card">
-                <h3>
+                <h2 class="produkt-nazwa">
                     <a href="{% url 'produkty:produkt_detail' produkt.id %}">{{ produkt.nazwa }}</a>
-                </h3>
-                <p class="produkt-meta">Producent: {{ produkt.producent.nazwa }}</p>
+                </h2>
+                <p class="produkt-meta">{{ produkt.producent.nazwa }}</p>
                 <p class="produkt-cena">{{ produkt.cena }} zł</p>
                 {% if produkt.dostepny %}
-                    <p class="produkt-status status-ok">Dostępny ({{ produkt.stan_magazynowy }} szt.)</p>
+                    <p class="produkt-status status-ok">Dostępny, {{ produkt.stan_magazynowy }} szt.</p>
                 {% else %}
                     <p class="produkt-status status-brak">Brak na stanie</p>
                 {% endif %}
             </article>
         {% empty %}
-            <p>W tej kategorii nie ma jeszcze produktów.</p>
+            <p>Brak produktów w tej kategorii.</p>
         {% endfor %}
     </section>
 
-    <p><a href="{% url 'produkty:kategoria_list' %}" class="back-link">&larr; Wszystkie kategorie</a></p>
+    <p><a href="{% url 'produkty:kategoria_list' %}" class="back-link">&larr; wszystkie kategorie</a></p>
 {% endblock %}

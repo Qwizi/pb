@@ -4,18 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Sklep Komputerowy{% endblock %}</title>
+    <title>{% block title %}Sklep komputerowy{% endblock %}</title>
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
 <body>
-    <header class="site-header">
-        <h1 class="site-title">Sklep Komputerowy „BitBazar”</h1>
-        {% include "produkty/includes/nav.html" %}
-    </header>
+    {% include "produkty/includes/nav.html" %}
 
     <main class="container">
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </main>
 
     {% include "produkty/includes/footer.html" %}

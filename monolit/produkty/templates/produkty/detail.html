@@ -1,37 +1,31 @@
 {% extends "produkty/base.html" %}
 
-{% block title %}{{ produkt.nazwa }} - BitBazar{% endblock %}
+{% block title %}{{ produkt.nazwa }}{% endblock %}
 
 {% block content %}
     <article class="produkt-detail">
-        <h2 class="page-title">{{ produkt.nazwa }}</h2>
+        <h1 class="page-title">{{ produkt.nazwa }}</h1>
 
         <p class="produkt-meta">
-            Kategoria:
             <a href="{% url 'produkty:kategoria_detail' produkt.kategoria.slug %}">{{ produkt.kategoria.nazwa }}</a>
-            &middot; Producent: {{ produkt.producent.nazwa }}
-            ({{ produkt.producent.kraj }})
+            &middot; {{ produkt.producent.nazwa }}, {{ produkt.producent.kraj }}
         </p>
 
         <p class="produkt-cena produkt-cena-large">{{ produkt.cena }} zł</p>
 
         {% if produkt.dostepny %}
-            <p class="produkt-status status-ok">
-                Dostępny w magazynie: {{ produkt.stan_magazynowy }} szt.
-            </p>
+            <p class="produkt-status status-ok">Dostępny w magazynie, {{ produkt.stan_magazynowy }} szt.</p>
         {% else %}
-            <p class="produkt-status status-brak">
-                Produkt aktualnie niedostępny.
-            </p>
+            <p class="produkt-status status-brak">Produkt aktualnie niedostępny.</p>
         {% endif %}
 
         <section class="produkt-opis-pelny">
-            <h3>Opis produktu</h3>
+            <h2>Opis</h2>
             <p>{{ produkt.opis }}</p>
         </section>
 
-        <p class="produkt-data">Dodano: {{ produkt.data_dodania|date:"d.m.Y" }}</p>
+        <p class="produkt-data">Dodano {{ produkt.data_dodania|date:"d.m.Y" }}.</p>
 
-        <p><a href="{% url 'produkty:produkt_list' %}" class="back-link">&larr; Powrót do listy</a></p>
+        <p><a href="{% url 'produkty:produkt_list' %}" class="back-link">&larr; powrót do listy</a></p>
     </article>
 {% endblock %}
