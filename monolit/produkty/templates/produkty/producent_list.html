@@ -1,0 +1,29 @@
+{% extends "produkty/base.html" %}
+
+{% block title %}Producenci - BitBazar{% endblock %}
+
+{% block content %}
+    <h2 class="page-title">Nasi producenci</h2>
+
+    <section class="producenci">
+        {% for producent in producenci %}
+            <article class="producent-card">
+                <h3>{{ producent.nazwa }}</h3>
+                <p class="producent-meta">
+                    Kraj: {{ producent.kraj }} &middot; Rok założenia: {{ producent.rok_zalozenia }}
+                </p>
+                <p>{{ producent.opis }}</p>
+                {% if producent.strona_www %}
+                    <p>
+                        <a href="{{ producent.strona_www }}" target="_blank" rel="noopener">
+                            Strona producenta
+                        </a>
+                    </p>
+                {% endif %}
+                <p class="producent-licznik">
+                    Liczba produktów w sklepie: <strong>{{ producent.produkty.count }}</strong>
+                </p>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

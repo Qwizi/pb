@@ -1,0 +1,26 @@
+{% extends "produkty/base.html" %}
+
+{% block title %}Kategorie - BitBazar{% endblock %}
+
+{% block content %}
+    <h2 class="page-title">Kategorie produktów</h2>
+
+    <section class="kategorie">
+        {% for kategoria in kategorie %}
+            <article class="kategoria-card">
+                <h3>
+                    <a href="{% url 'produkty:kategoria_detail' kategoria.slug %}">{{ kategoria.nazwa }}</a>
+                </h3>
+                {% if kategoria.aktywna %}
+                    <p class="badge badge-aktywna">Aktywna</p>
+                {% else %}
+                    <p class="badge badge-nieaktywna">Nieaktywna</p>
+                {% endif %}
+                <p>{{ kategoria.opis }}</p>
+                <p class="kategoria-licznik">
+                    Liczba produktów: <strong>{{ kategoria.produkty.count }}</strong>
+                </p>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}
